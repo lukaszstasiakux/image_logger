@@ -1,9 +1,8 @@
-const Colors = {
-	gray: '#555555'
+export const Colors = {
+	gray: '#5f5f5f',
+	lightGray: '#cbcbcb',
+	darkGray: '#2d2d2d',
+	nearBlack: '#050505'
 }
 
-const Theme = {
-	backgroundColor: Colors.gray,
-}
 
-export default Theme;

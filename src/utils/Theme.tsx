@@ -4,7 +4,7 @@ export const Colors = {
 	darkGray: '#2d2d2d',
 	nearBlack: '#050505',
 	action: '#ff902f',
-	blue:'#0657e'
+	blueOcean:'#60a0c7',
 }
 
 

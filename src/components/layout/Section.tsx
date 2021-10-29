@@ -15,6 +15,7 @@ const AreaSection = styled.div<AreaSectionProps>`
       : "50%"};
   background-color: ${Colors.lightGray};
   transition: 300ms;
+  overflow: hidden;
 `;
 
 interface SectionProps {

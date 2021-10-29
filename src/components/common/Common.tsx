@@ -13,8 +13,12 @@ export const Alignment = styled.div<AlignmentProps>`
   align-items: ${(p) => (p.vertical ? p.vertical : "center")};
 `;
 
+
+
 export const SectionHeader = styled(Alignment)`
   height: 4rem;
-  background-color: ${Colors.gray};
+  background-color: ${Colors.blueOcean};
 	padding:0 1rem;
 `;
+
+

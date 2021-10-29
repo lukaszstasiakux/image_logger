@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
-import Untagged from "../untagged/Untagged";
-import Tagged from "../tagged/Tagged";
+import { defaultState, LayoutContext } from "../../context/Context";
+import Workspace from '../workspace/Workspace';
 import Sidebar from "../sidebar/Sidebar";
 
 const Main = styled.div`
@@ -10,23 +10,15 @@ const Main = styled.div`
   display: flex;
 `;
 
-const WorkArea = styled.div`
-  width: calc(100% - 30rem);
-  background-color: #335500;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-
 const Layout: FC = () => {
+  const [layoutMode, setLayout] = useState(defaultState.layoutMode);
   return (
-    <Main>
-      <WorkArea>
-        <Untagged />
-        <Tagged />
-      </WorkArea>
-      <Sidebar />
-    </Main>
+    <LayoutContext.Provider value={{ layoutMode, setLayout:(e)=>setLayout(e) }}>
+      <Main>
+        <Workspace/>
+        <Sidebar />
+      </Main>
+    </LayoutContext.Provider>
   );
 };
 

@@ -1,27 +1,28 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+import { SECTION_MODE } from "../../utils/Const";
 import { Colors } from "../../utils/Theme";
 
 interface AreaSectionProps {
-  top?: boolean;
-  bottom?: boolean;
+  mode: string;
 }
 const AreaSection = styled.div<AreaSectionProps>`
-  height: 50%;
+  height: ${(p) =>
+    p.mode === SECTION_MODE.max
+      ? "calc(100% - 15rem)"
+      : p.mode === SECTION_MODE.min
+      ? "15rem"
+      : "50%"};
   background-color: ${Colors.lightGray};
-
+  transition: 300ms;
 `;
 
 interface SectionProps {
   children: React.ReactNode;
-
+  mode: string;
 }
-const Section: FC<SectionProps> = ({ children }) => {
-  return (
-    <AreaSection >
-      {children}
-    </AreaSection>
-  );
+const Section: FC<SectionProps> = ({ children, mode }) => {
+  return <AreaSection mode={mode}>{children}</AreaSection>;
 };
 
 export default Section;

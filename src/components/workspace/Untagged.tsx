@@ -3,9 +3,12 @@ import Section from '../layout/Section';
 import LayoutButtons from '../layout/LayoutButtons';
 import {SectionHeader} from '../common/Common';
 
-const Untagged:FC = () => {
+interface UntaggedProps {
+	mode: string
+}
+const Untagged:FC<UntaggedProps> = ({mode}) => {
 	return(
-		<Section >
+		<Section mode={mode}>
 			<SectionHeader>
 			Untagged section
 			<LayoutButtons/>

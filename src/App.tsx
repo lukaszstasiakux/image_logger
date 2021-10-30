@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
-import Layout from "./components/layout/Layout";
+import AppWrapper from "./components/AppWrapper";
 
 function App() {
   return (
     <Fragment>
-      <Layout />
+      <AppWrapper/>
     </Fragment>
   );
 }

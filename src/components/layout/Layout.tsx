@@ -1,11 +1,11 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { defaultState, LayoutContext } from "../../context/Context";
 import Workspace from "../workspace/Workspace";
 import Sidebar from "../sidebar/Sidebar";
 import axios from "axios";
 import { prepareData } from "../workspace/workspaceHelper";
-import { DataContext, defaultData } from "../workspace/DataContext";
+import DataContext from "../workspace/DataContext";
 
 const Main = styled.div`
   width: 100vw;
@@ -15,17 +15,14 @@ const Main = styled.div`
 
 const Layout: FC = () => {
   const [layoutMode, setLayout] = useState(defaultState.layoutMode);
-  const [data, updateData] = useState(defaultData);
-  console.log(data);
-
+  const { data, updateData } = useContext(DataContext);
   useEffect(() => {
     axios
       .get("https://picsum.photos/v2/list")
       .then((res) => {
         if (res.data) {
-          console.log(res.data)
           const photoList = prepareData(res.data);
-          console.log(data)
+          // @ts-ignore
           updateData({
             ...data,
             photos: photoList,
@@ -36,19 +33,14 @@ const Layout: FC = () => {
         console.log(error);
       });
   }, []);
-  console.log(data)
+  console.log(useContext(DataContext));
   return (
     <LayoutContext.Provider
       value={{ layoutMode, setLayout: (e) => setLayout(e) }}
     >
       <Main>
-        
-        <DataContext.Provider
-          value={data}
-        >
-          <Workspace />
-          <Sidebar />
-        </DataContext.Provider>
+        <Workspace />
+        <Sidebar />
       </Main>
     </LayoutContext.Provider>
   );

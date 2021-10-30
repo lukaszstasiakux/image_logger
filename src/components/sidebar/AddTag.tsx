@@ -1,26 +1,28 @@
 import React, { FC, Fragment, useState, useContext } from "react";
-import styled from "styled-components";
-import { colors } from "../../utils/Theme";
-import { FullButton, IconButton } from "../common/Button";
-import { Alignment, OptionArea } from "../common/Common";
-import { DataContext } from "../workspace/DataContext";
+import { FullButton } from "../common/Button";
+import DataContext from "../workspace/DataContext";
+
 import TagTemplate from "./TagTemplate";
 
 const AddTag: FC = () => {
   const [showForm, toggleForm] = useState(false);
-  // const {tags} = useContext(DataContext);
-  console.log(useContext(DataContext));
+  const { data, updateData } = useContext(DataContext);
+	const {tags} = data;
 
   const saveTag = (tagName: string, color: string) => {
-    // const newTags = [...tags];
-    // newTags.push({
-    //   id: "dupa",
-    //   name: tagName,
-    //   color: color,
-    // });
-    // updateData({
-    //   tags: newTags,
-    // });
+		if(tagName.length > 0){
+			const newTags = [...tags];
+			newTags.push({
+				id: Date.now().toString(),
+				name: tagName,
+				color: color,
+			});
+			// @ts-ignore
+			updateData({
+				...data,
+				tags: newTags,
+			});
+		}
 
     toggleForm(false);
   };

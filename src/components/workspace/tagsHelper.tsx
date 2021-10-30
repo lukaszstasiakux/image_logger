@@ -27,3 +27,7 @@ export const defineColor = (
   });
   return freshColor;
 };
+
+export const getTagById = (id:string, tags:TagsDataProps[]):TagsDataProps | undefined => {
+ return tags.find((tag)=> (tag.id === id))
+}

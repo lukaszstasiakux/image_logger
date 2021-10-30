@@ -4,7 +4,6 @@ import Untagged from "./Untagged";
 import Tagged from "./Tagged";
 import { toogleLayout } from "./workspaceHelper";
 import { LayoutContext } from "../../context/Context";
-import { DataContext } from "./DataContext";
 
 const WrapperWorkspace = styled.div`
   width: calc(100% - 30rem);

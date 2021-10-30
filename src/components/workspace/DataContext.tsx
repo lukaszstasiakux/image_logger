@@ -1,15 +1,16 @@
 import { createContext } from "react";
-import { PhotoDataProps, TagsDataProps } from "./workspaceHelper";
+import { PhotoDataProps } from "./workspaceHelper";
+import { TagsDataProps } from "./tagsHelper";
 
 interface DefaultDataProps {
-	photos:PhotoDataProps[],
-	tags:TagsDataProps[],
-	updateData? : ()=> void;
+  photos: PhotoDataProps[];
+  tags: TagsDataProps[];
+  updateData?:() => void;
 }
 
-export const defaultData:DefaultDataProps = {
-	photos:[],
-	tags:[]
-}
+export const defaultData: DefaultDataProps = {
+  photos: [],
+  tags: [],
+};
 
-export const DataContext = createContext<DefaultDataProps>(defaultData)
+export const DataContext = createContext<DefaultDataProps>(defaultData);

@@ -57,12 +57,6 @@ export const prepareData = (data: IncomingDataProps[]): PhotoDataProps[] => {
   return finalData;
 };
 
-export interface TagsDataProps {
-  id: string;
-  name: string;
-  color: string;
-}
-
 export const photosSelector = (
   data: PhotoDataProps[],
   haveTags: boolean
@@ -73,3 +67,5 @@ export const photosSelector = (
 
   return filteredPhotos;
 };
+
+

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { SECTION_MODE } from "../../utils/Const";
-import { Colors } from "../../utils/Theme";
+import { colors } from "../../utils/Theme";
 
 interface AreaSectionProps {
   mode: string;
@@ -13,7 +13,7 @@ const AreaSection = styled.div<AreaSectionProps>`
       : p.mode === SECTION_MODE.min
       ? "15rem"
       : "50%"};
-  background-color: ${Colors.lightGray};
+  background-color: ${colors.lightGray};
   transition: 300ms;
   overflow: hidden;
 `;

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { SECTION_MODE } from "../../utils/Const";
-import { Colors } from "../../utils/Theme";
+import { colors } from "../../utils/Theme";
 import { PhotoDataProps } from "./workspaceHelper";
 
 interface WrapperPhotoProps {
@@ -21,10 +21,10 @@ const WrapperPhoto = styled.div<WrapperPhotoProps>`
       ? "11rem"
       : "15rem"};
   box-sizing: border-box;
-  background-color: ${Colors.gray};
+  background-color: ${colors.gray};
   display: flex;
   padding: 0.4rem;
-  border: 1px solid ${Colors.lightGray};
+  border: 1px solid ${colors.lightGray};
   transition: 300ms;
 	flex-shrink: 0;
 

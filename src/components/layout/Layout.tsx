@@ -16,6 +16,7 @@ const Main = styled.div`
 const Layout: FC = () => {
   const [layoutMode, setLayout] = useState(defaultState.layoutMode);
   const [data, updateData] = useState(defaultData);
+  console.log(data);
 
   useEffect(() => {
     axios
@@ -24,22 +25,27 @@ const Layout: FC = () => {
         if (res.data) {
           console.log(res.data)
           const photoList = prepareData(res.data);
+          console.log(data)
           updateData({
             ...data,
-            photos:photoList
-          })
+            photos: photoList,
+          });
         }
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+  console.log(data)
   return (
     <LayoutContext.Provider
       value={{ layoutMode, setLayout: (e) => setLayout(e) }}
     >
       <Main>
-        <DataContext.Provider value={data}>
+        
+        <DataContext.Provider
+          value={data}
+        >
           <Workspace />
           <Sidebar />
         </DataContext.Provider>

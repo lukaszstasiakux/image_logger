@@ -2,21 +2,28 @@ import React, { FC, useContext, useMemo } from "react";
 import Section from "../layout/Section";
 import LayoutButtons from "../layout/LayoutButtons";
 import { SectionHeader } from "../common/Common";
-import PhotoArea from './PhotoArea';
+import PhotoArea from "./PhotoArea";
+import { DataContext } from "./DataContext";
+import { photosSelector } from "./workspaceHelper";
 
 interface UntaggedProps {
   mode: string;
-	hasTags:boolean;
+  hasTags: boolean;
 }
 
-const Untagged: FC<UntaggedProps> = ({ mode,hasTags }) => {
+const Untagged: FC<UntaggedProps> = ({ mode, hasTags }) => {
+  const { photos } = useContext(DataContext);
+  const photoScope = useMemo(() => {
+    return photosSelector(photos, hasTags);
+  }, [photos,hasTags]);
+
   return (
     <Section mode={mode}>
       <SectionHeader>
-        Untagged section
+        Untagged pictures ({photoScope.length})
         <LayoutButtons />
       </SectionHeader>
-			<PhotoArea mode={mode} hasTags={hasTags}/>
+      <PhotoArea mode={mode} hasTags={hasTags} photos={photoScope} />
     </Section>
   );
 };

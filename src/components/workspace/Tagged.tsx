@@ -1,7 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useContext, useMemo } from "react";
 import Section from "../layout/Section";
 import { Alignment, SectionHeader } from "../common/Common";
 import PhotoArea from './PhotoArea';
+import { DataContext } from "./DataContext";
+import { photosSelector } from "./workspaceHelper";
 
 interface TaggedProps {
   mode: string;
@@ -9,15 +11,18 @@ interface TaggedProps {
 }
 
 const Tagged: FC<TaggedProps> = ({ mode,hasTags }) => {
-  
+	const { photos } = useContext(DataContext);
+  const photoScope = useMemo(() => {
+    return photosSelector(photos, hasTags);
+  }, [photos,hasTags]);
 
   return (
     <Section mode={mode}>
       <SectionHeader>
-        Tagged section
+        Tagged pictures ({photoScope.length})
         <Alignment>button</Alignment>
       </SectionHeader>
-      <PhotoArea mode={mode} hasTags={hasTags}/>
+      <PhotoArea mode={mode} hasTags={hasTags} photos={photoScope}/>
     </Section>
   );
 };

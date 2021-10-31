@@ -11,9 +11,12 @@ export const Alignment = styled.div<AlignmentProps>`
   flex-direction: ${(p) => (p.direction ? p.direction : "row")};
   justify-content: ${(p) => (p.horizontal ? p.horizontal : "space-between")};
   align-items: ${(p) => (p.vertical ? p.vertical : "center")};
-  flex-wrap:  wrap;
+  flex-wrap: wrap;
 `;
-
+export const SectionArea = styled.div`
+  padding: 0 1rem;
+  width: 100%;
+`;
 export const SectionHeader = styled(Alignment)`
   height: 4rem;
   background-color: ${colors.blueOcean};
@@ -22,10 +25,11 @@ export const SectionHeader = styled(Alignment)`
   color: ${colors.pureWhite};
 `;
 export const SidebarSection = styled.div`
-	padding-bottom:1rem;
-	margin-bottom:1rem;
-	border-bottom:0.1rem solid ${colors.lighterColor};
-`
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  border-bottom: 0.1rem solid ${colors.lighterColor};
+`;
 export const SidebarHeader = styled.div`
   color: ${colors.pureWhite};
   font-size: 1.6rem;

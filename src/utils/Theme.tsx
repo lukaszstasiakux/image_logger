@@ -5,6 +5,7 @@ export const colors = {
 	darkGray: '#2d2d2d',
 	nearBlack: '#050505',
 	action: '#ff902f',
+	selected: '#afacac',
 	blueOcean:'#4b85a9',
 	pureWhite: '#ffffff',
 	lighterColor: 'rgba(255,255,255,0.2)',

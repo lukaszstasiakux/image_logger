@@ -1,4 +1,4 @@
-import React, { FC, useContext, useMemo } from "react";
+import React, { FC, useContext } from "react";
 import Section from "../layout/Section";
 import LayoutButtons from "../layout/LayoutButtons";
 import { SectionHeader } from "../common/Common";
@@ -14,9 +14,7 @@ interface UntaggedProps {
 const Untagged: FC<UntaggedProps> = ({ mode, hasTags }) => {
   const { data } = useContext(DataContext);
   const { photos } = data;
-  const photoScope = useMemo(() => {
-    return photosSelector(photos, hasTags);
-  }, [photos, hasTags]);
+  const photoScope = photosSelector(photos, hasTags)
 
   return (
     <Section mode={mode}>

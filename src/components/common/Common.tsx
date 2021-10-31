@@ -77,3 +77,9 @@ export const TagColor = styled.div<TagColorProps>`
   margin-right: 1rem;
   border-radius: 50%;
 `;
+
+export const SmallTagColor = styled(TagColor)`
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.4rem;
+`;

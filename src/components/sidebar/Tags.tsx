@@ -1,5 +1,4 @@
 import React, { FC, Fragment, useContext, useState } from "react";
-import styled from "styled-components";
 import { SidebarHeader, SidebarSection } from "../common/Common";
 import DataContext from "../workspace/DataContext";
 import TagsList from "./tags/TagsList";

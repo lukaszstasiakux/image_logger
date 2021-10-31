@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useState } from "react";
+import React, { FC, Fragment, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { IconButton } from "../../common/Button";
 import {
@@ -7,7 +7,8 @@ import {
   OptionLabel,
   TagColor,
 } from "../../common/Common";
-import { TagsDataProps } from "../../workspace/tagsHelper";
+import DataContext from "../../workspace/DataContext";
+import { setTagDetails, TagsDataProps } from "../../workspace/tagsHelper";
 import TagTemplate from "../TagTemplate";
 
 const WrapperTagItem = styled(OptionArea)`
@@ -28,6 +29,8 @@ interface SelectedTagItemProps {
 }
 
 const SelectedTagItem: FC<SelectedTagItemProps> = ({ tag }) => {
+	const { data, updateData } = useContext(DataContext);
+  const { tags } = data;
   const [edit, toogleEdit] = useState(false);
 
   useEffect(() => {
@@ -39,7 +42,15 @@ const SelectedTagItem: FC<SelectedTagItemProps> = ({ tag }) => {
   const deleteTag = () => {
     console.log("delete");
   };
-  const saveChanges = () => {};
+  const saveChanges = (name:string, color:string) => {
+		const updatedTag = setTagDetails(tag.id, name,color, tags);
+		//@ts-ignore
+		updateData({
+			...data,
+			tags: updatedTag,
+		});
+		toogleEdit(false)
+	};
   return (
     <Fragment>
       {edit ? (

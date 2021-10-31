@@ -17,23 +17,30 @@ const Layout: FC = () => {
   const [layoutMode, setLayout] = useState(defaultState.layoutMode);
   const { data, updateData } = useContext(DataContext);
   useEffect(() => {
-    axios
-      .get("https://picsum.photos/v2/list")
-      .then((res) => {
-        if (res.data) {
-          const photoList = prepareData(res.data);
-          // @ts-ignore
-          updateData({
-            ...data,
-            photos: photoList,
-          });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
+    if (sessionStorage.getItem("saveData")) {
+      const savedData = JSON.parse(sessionStorage.getItem("saveData")!);
+      // @ts-ignore
+      updateData({
+        ...savedData,
       });
+    } else {
+      axios
+        .get("https://picsum.photos/v2/list")
+        .then((res) => {
+          if (res.data) {
+            const photoList = prepareData(res.data);
+            // @ts-ignore
+            updateData({
+              ...data,
+              photos: photoList,
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }, []);
-  console.log(useContext(DataContext));
   return (
     <LayoutContext.Provider
       value={{ layoutMode, setLayout: (e) => setLayout(e) }}

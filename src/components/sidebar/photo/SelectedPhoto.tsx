@@ -1,5 +1,5 @@
 import React, { FC, useContext } from "react";
-import { Alignment, SidebarHeader, SectionArea } from "../../common/Common";
+import { Alignment } from "../../common/Common";
 import DataContext from "../../workspace/DataContext";
 import SelectedPhotoContext from "../../workspace/SelectedPhotoContext";
 import PhotoDetails from "./PhotoDetails";
@@ -18,6 +18,7 @@ const SelectedPhoto: FC = () => {
   const { photoId } = useContext(SelectedPhotoContext);
   const { tags, photos } = data;
   const selectedPhoto = getPhotoById(photoId, photos)!;
+
   const toggleTag = (tagId: string) => {
     const photoTags = changePhotoTag(tagId, selectedPhoto.tags);
 		const photoUpdate = updatePhotoTags(photoId,photoTags,photos);

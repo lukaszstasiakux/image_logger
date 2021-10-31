@@ -56,7 +56,7 @@ export const changePhotoTag = (
   tagId: string,
   photoTags: string[]
 ): string[] => {
-	const tags = [...photoTags]
+  const tags = [...photoTags];
   if (tags.includes(tagId)) {
     const index = tags.indexOf(tagId);
     if (index > -1) {
@@ -65,5 +65,25 @@ export const changePhotoTag = (
   } else {
     tags.push(tagId);
   }
-	return tags;
+  return tags;
+};
+
+export const getTagColor = (id: string, tags: TagsDataProps[]): string => {
+  const result = tags.find((tag) => tag.id === id)!;
+  return result.color;
+};
+
+export const setTagDetails = (
+  id: string,
+	name:string,
+	color:string,
+  tags: TagsDataProps[]
+): TagsDataProps[] => {
+  tags.forEach((tag) => {
+    if (tag.id === id) {
+      tag.color = color;
+      tag.name = name;
+    }
+  });
+  return tags;
 };

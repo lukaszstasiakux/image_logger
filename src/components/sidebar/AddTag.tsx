@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState, useContext } from "react";
+import React, { FC, useState, useContext } from "react";
 import { FullButton } from "../common/Button";
 import { SidebarHeader, SidebarSection } from "../common/Common";
 import DataContext from "../workspace/DataContext";

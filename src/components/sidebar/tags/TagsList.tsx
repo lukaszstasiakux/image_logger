@@ -1,6 +1,11 @@
-import React,{ FC } from "react"
-import { Alignment,OptionArea, TagColor,OptionLabel } from "../../common/Common";
-import {TagsDataProps} from '../../workspace/tagsHelper';
+import React, { FC } from "react";
+import {
+  Alignment,
+  OptionArea,
+  TagColor,
+  OptionLabel,
+} from "../../common/Common";
+import { TagsDataProps } from "../../workspace/tagsHelper";
 import styled from "styled-components";
 
 const WrapperTagItem = styled(OptionArea)`
@@ -28,17 +33,17 @@ export const TagItem: FC<TagItemProps> = ({ tag, onClick }) => {
 };
 
 interface TagListProps {
-	tags:TagsDataProps[];
-	onClick: any;
+  tags: TagsDataProps[];
+  onClick: any;
 }
-const TagsList:FC<TagListProps> = ({tags, onClick})=>{
-	return (
-		<Alignment vertical="flex-start" horizontal="flex-start">
-        {tags.map((tag) => (
-          <TagItem tag={tag} key={tag.id} onClick={onClick} />
-        ))}
-      </Alignment>
-	)
-}
+const TagsList: FC<TagListProps> = ({ tags, onClick }) => {
+  return (
+    <Alignment vertical="flex-start" horizontal="flex-start">
+      {tags.map((tag) => (
+        <TagItem tag={tag} key={tag.id} onClick={onClick} />
+      ))}
+    </Alignment>
+  );
+};
 
 export default TagsList;

@@ -15,8 +15,7 @@ const WrapperTagsBar = styled.div`
   left: 0;
   width: 100%;
   padding: 0.4rem;
-  display: flex;
-  ;
+  display: flex; ;
 `;
 
 interface TagsBarProps {
@@ -28,7 +27,7 @@ export const TagsBar: FC<TagsBarProps> = ({ photoTags }) => {
   return (
     <WrapperTagsBar>
       {photoTags.map((tag) => (
-        <SmallTagColor color={getTagColor(tag, tags)} key={tag}/>
+        <SmallTagColor color={getTagColor(tag, tags)} key={tag} />
       ))}
     </WrapperTagsBar>
   );
@@ -59,6 +58,34 @@ const WrapperPhoto = styled.div<WrapperPhotoProps>`
   transition: 300ms;
   flex-shrink: 0;
   position: relative;
+  @media (max-width: 1200px) {
+    width: ${(p) =>
+      p.mode === SECTION_MODE.max
+        ? "calc( 100% / 3)"
+        : p.mode === SECTION_MODE.min
+        ? "11rem"
+        : "25%"};
+    height: ${(p) =>
+      p.mode === SECTION_MODE.max
+        ? "22rem"
+        : p.mode === SECTION_MODE.min
+        ? "11rem"
+        : "14rem"};
+  }
+  @media (max-width: 720px) {
+    width: ${(p) =>
+      p.mode === SECTION_MODE.max
+        ? "calc( 100% / 2)"
+        : p.mode === SECTION_MODE.min
+        ? "11rem"
+        : "calc( 100% / 3)"};
+    height: ${(p) =>
+      p.mode === SECTION_MODE.max
+        ? "16rem"
+        : p.mode === SECTION_MODE.min
+        ? "11rem"
+        : "10rem"};
+  }
 
   img {
     display: inline-block;

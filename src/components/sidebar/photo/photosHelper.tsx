@@ -29,7 +29,7 @@ export const getFilteredPhotos = (
   }
   const filtered = photos.filter((photo) => {
     const checkTag = filters.every((filter) => photo.tags.includes(filter));
-		return checkTag
+    return checkTag;
   });
   return filtered;
 };

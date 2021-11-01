@@ -66,10 +66,10 @@ const Filters: FC<FiltersProps> = ({
     applyFilters(filters);
     toggleModal(false);
   };
-	const clearFilters = ()=>{
-		applyFilters([])
-		toggleFilter([])
-	}
+  const clearFilters = () => {
+    applyFilters([]);
+    toggleFilter([]);
+  };
 
   return (
     <Alignment>

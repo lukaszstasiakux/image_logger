@@ -8,11 +8,11 @@ interface PhotoTagsProps {
   onClick?: any;
 }
 
-const PhotoTags: FC<PhotoTagsProps> = ({tags, onClick}) => {
+const PhotoTags: FC<PhotoTagsProps> = ({ tags, onClick }) => {
   return (
     <SidebarSection>
       <SidebarHeader>Photo Tags</SidebarHeader>
-			<TagsList onClick={onClick} tags={tags} />
+      <TagsList onClick={onClick} tags={tags} />
     </SidebarSection>
   );
 };

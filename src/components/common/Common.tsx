@@ -19,7 +19,7 @@ export const SectionArea = styled.div`
 `;
 export const SectionHeader = styled(Alignment)`
   height: 4rem;
-  background-color: ${colors.blueOcean};
+  background-color: ${colors.darkGray};
   padding: 0 1rem;
   font-size: 1.6rem;
   color: ${colors.pureWhite};
@@ -37,11 +37,11 @@ export const SidebarHeader = styled.div`
 `;
 
 export const ActionSidebarHeader = styled.div`
-  color:${colors.action};
-  font-size:1.2rem;
-  cursor:pointer;
-  padding:0 0.5rem;
-`
+  color: ${colors.action};
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+`;
 interface OptionAreaProps {
   full?: boolean;
 }
@@ -71,7 +71,7 @@ export const Overlay = styled.div`
   height: 100%;
   z-index: 5;
   cursor: default;
-  background-color:${colors.darkerColor}
+  background-color: ${colors.darkerColor};
 `;
 
 interface TagColorProps {
@@ -86,7 +86,7 @@ export const TagColor = styled.div<TagColorProps>`
 `;
 
 export const SmallTagColor = styled(TagColor)`
-  width: 1rem;
-  height: 1rem;
+  width: 1.4rem;
+  height: 1.4rem;
   margin-right: 0.4rem;
 `;

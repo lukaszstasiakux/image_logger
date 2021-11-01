@@ -8,28 +8,28 @@ import TagTemplate from "./TagTemplate";
 const AddTag: FC = () => {
   const [showForm, toggleForm] = useState(false);
   const { data, updateData } = useContext(DataContext);
-	const {tags} = data;
+  const { tags } = data;
 
   const saveTag = (tagName: string, color: string) => {
-		if(tagName.length > 0){
-			const newTags = [...tags];
-			newTags.push({
-				id: Date.now().toString(),
-				name: tagName,
-				color: color,
-			});
-			// @ts-ignore
-			updateData({
-				...data,
-				tags: newTags,
-			});
-		}
+    if (tagName.length > 0) {
+      const newTags = [...tags];
+      newTags.push({
+        id: Date.now().toString(),
+        name: tagName,
+        color: color,
+      });
+      // @ts-ignore
+      updateData({
+        ...data,
+        tags: newTags,
+      });
+    }
 
     toggleForm(false);
   };
   return (
     <SidebarSection>
-			<SidebarHeader>Add Tag</SidebarHeader>
+      <SidebarHeader>Add Tag</SidebarHeader>
       {!showForm ? (
         <FullButton
           icon="add"

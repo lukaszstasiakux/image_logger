@@ -8,13 +8,13 @@ interface AvailableTagsProps {
   onClick?: any;
 }
 
-const AvailableTags: FC<AvailableTagsProps> =({tags, onClick}) => {
-	return(
-		<SidebarSection>
-			<SidebarHeader>Available Tags</SidebarHeader>
-			<TagsList onClick={onClick} tags={tags} />
-		</SidebarSection>
-	)
-}
+const AvailableTags: FC<AvailableTagsProps> = ({ tags, onClick }) => {
+  return (
+    <SidebarSection>
+      <SidebarHeader>Available Tags</SidebarHeader>
+      <TagsList onClick={onClick} tags={tags} />
+    </SidebarSection>
+  );
+};
 
 export default AvailableTags;

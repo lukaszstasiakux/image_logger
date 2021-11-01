@@ -19,8 +19,8 @@ const ModalArea = styled.div`
   padding: 1rem;
 `;
 const ModalContent = styled.div`
-  margin-bottom: 2rem; ;
-	color:${colors.nearBlack};
+  margin-bottom: 2rem;
+  color: ${colors.nearBlack};
 `;
 const ModalAction = styled.div`
   padding: 1rem;

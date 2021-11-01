@@ -28,17 +28,17 @@ interface DataProviderProps {
 export const DataProvider: FC<DataProviderProps> = ({ children }) => {
   const [data, updateData] = useState(defaultData.data);
 
-	const setData = (obj:any)=>{
-		sessionStorage.setItem('saveData', JSON.stringify(obj));
-		updateData(obj)
-	}
+  const setData = (obj: any) => {
+    sessionStorage.setItem("saveData", JSON.stringify(obj));
+    updateData(obj);
+  };
 
   return (
     <DataContext.Provider
       value={{
-					data,
-				// @ts-ignore
-        updateData:(obj)=>setData(obj),
+        data,
+        // @ts-ignore
+        updateData: (obj) => setData(obj),
       }}
     >
       {children}

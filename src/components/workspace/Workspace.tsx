@@ -12,13 +12,13 @@ const WrapperWorkspace = styled.div`
   flex-direction: column;
 `;
 const Workspace: FC = () => {
-	const {layoutMode} = useContext(LayoutContext)
-  const heightMode = toogleLayout(layoutMode)
-	
+  const { layoutMode } = useContext(LayoutContext);
+  const heightMode = toogleLayout(layoutMode);
+
   return (
     <WrapperWorkspace>
-      <Untagged mode={heightMode.untagged} hasTags={false}/>
-      <Tagged mode={heightMode.tagged} hasTags={true}/>
+      <Untagged mode={heightMode.untagged} hasTags={false} />
+      <Tagged mode={heightMode.tagged} hasTags={true} />
     </WrapperWorkspace>
   );
 };

@@ -14,7 +14,7 @@ interface UntaggedProps {
 const Untagged: FC<UntaggedProps> = ({ mode, hasTags }) => {
   const { data } = useContext(DataContext);
   const { photos } = data;
-  const photoScope = photosSelector(photos, hasTags)
+  const photoScope = photosSelector(photos, hasTags);
 
   return (
     <Section mode={mode}>

@@ -30,12 +30,10 @@ export const SectionContent = styled.div<SectionContentProps>`
 interface PhotoAreaProps {
   mode: string;
   hasTags: boolean;
-	photos: PhotoDataProps[];
+  photos: PhotoDataProps[];
 }
 
 const PhotoArea: FC<PhotoAreaProps> = ({ mode, hasTags, photos }) => {
-  
-
   return (
     <SectionContent list={mode === SECTION_MODE.min}>
       <WrapperPhotoArea list={mode === SECTION_MODE.min}>

@@ -54,10 +54,7 @@ export const getAvailableTagsForPhoto = (
   return result;
 };
 
-export const updateTags = (
-  tagId: string,
-  photoTags: string[]
-): string[] => {
+export const updateTags = (tagId: string, photoTags: string[]): string[] => {
   const tags = [...photoTags];
   if (tags.includes(tagId)) {
     const index = tags.indexOf(tagId);
@@ -118,4 +115,3 @@ export const deleteTag = (
   });
   return { photos: photos, tags: newTags };
 };
-

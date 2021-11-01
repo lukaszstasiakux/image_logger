@@ -3,7 +3,7 @@ import { BlockPicker } from "react-color";
 import styled from "styled-components";
 import { colors, tagsColor } from "../../utils/Theme";
 import { IconButton } from "../common/Button";
-import { Alignment, OptionArea, Overlay,TagColor } from "../common/Common";
+import { Alignment, OptionArea, Overlay, TagColor } from "../common/Common";
 import DataContext from "../workspace/DataContext";
 import { defineColor } from "../workspace/tagsHelper";
 
@@ -32,8 +32,6 @@ const PointerColorPicker = styled.div`
   position: absolute;
   z-index: 10;
 `;
-
-
 
 interface TagColorPickerProps {
   tagColor: string;
@@ -83,7 +81,7 @@ const TagTemplate: FC<TagTemplateProps> = ({
 }) => {
   const [fieldValue, changeValue] = useState(value ? value : "");
   const { data } = useContext(DataContext);
-  const {tags} = data;
+  const { tags } = data;
   const [tagColor, updateColor] = useState(
     color ? color : defineColor(tags, tagsColor)
   );

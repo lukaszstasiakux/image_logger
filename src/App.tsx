@@ -4,7 +4,7 @@ import AppWrapper from "./components/AppWrapper";
 function App() {
   return (
     <Fragment>
-      <AppWrapper/>
+      <AppWrapper />
     </Fragment>
   );
 }

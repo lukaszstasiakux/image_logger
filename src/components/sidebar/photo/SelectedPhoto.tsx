@@ -21,13 +21,13 @@ const SelectedPhoto: FC = () => {
 
   const toggleTag = (tagId: string) => {
     const photoTags = updateTags(tagId, selectedPhoto.tags);
-		const photoUpdate = updatePhotoTags(photoId,photoTags,photos);
+    const photoUpdate = updatePhotoTags(photoId, photoTags, photos);
 
-		//@ts-ignore
-		updateData({
-			...data,
-			photos: photoUpdate,
-		});
+    //@ts-ignore
+    updateData({
+      ...data,
+      photos: photoUpdate,
+    });
   };
   return (
     <Alignment direction="column" vertical="flex-start">

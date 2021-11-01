@@ -1,3 +1,5 @@
+import { PhotoDataProps } from "./workspaceHelper";
+
 export interface TagsDataProps {
   id: string;
   name: string;
@@ -52,7 +54,7 @@ export const getAvailableTagsForPhoto = (
   return result;
 };
 
-export const changePhotoTag = (
+export const updateTags = (
   tagId: string,
   photoTags: string[]
 ): string[] => {
@@ -75,8 +77,8 @@ export const getTagColor = (id: string, tags: TagsDataProps[]): string => {
 
 export const setTagDetails = (
   id: string,
-	name:string,
-	color:string,
+  name: string,
+  color: string,
   tags: TagsDataProps[]
 ): TagsDataProps[] => {
   tags.forEach((tag) => {
@@ -87,3 +89,33 @@ export const setTagDetails = (
   });
   return tags;
 };
+
+export const countPhotoUsedTag = (
+  tagId: string,
+  photos: PhotoDataProps[]
+): number => {
+  const result = photos.filter((photo) => photo.tags.includes(tagId));
+  return result.length;
+};
+interface DeleteTagOutput {
+  tags: TagsDataProps[];
+  photos: PhotoDataProps[];
+}
+export const deleteTag = (
+  tagId: string,
+  tags: TagsDataProps[],
+  photos: PhotoDataProps[]
+): DeleteTagOutput => {
+  const newTags = tags.filter((tag) => tag.id !== tagId);
+
+  photos.forEach((photo) => {
+    if (photo.tags.includes(tagId)) {
+      const index = photo.tags.indexOf(tagId);
+      if (index > -1) {
+        photo.tags.splice(index, 1);
+      }
+    }
+  });
+  return { photos: photos, tags: newTags };
+};
+

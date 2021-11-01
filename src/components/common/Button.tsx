@@ -25,16 +25,16 @@ interface OptionButtonProps {
   mode: string;
 }
 
-export const OptionButton: FC<OptionButtonProps> = ({ icon,mode }) => {
-  const {layoutMode, setLayout} = useContext(LayoutContext)
-  const setOption = (value:string)=>{
-    if(setLayout){
-      setLayout(value)
+export const OptionButton: FC<OptionButtonProps> = ({ icon, mode }) => {
+  const { layoutMode, setLayout } = useContext(LayoutContext);
+  const setOption = (value: string) => {
+    if (setLayout) {
+      setLayout(value);
     }
-  }
+  };
 
   return (
-    <WrapperIcon active={layoutMode===mode} onClick={() => setOption(mode)}>
+    <WrapperIcon active={layoutMode === mode} onClick={() => setOption(mode)}>
       <i className="material-icons">{icon}</i>
     </WrapperIcon>
   );
@@ -42,10 +42,11 @@ export const OptionButton: FC<OptionButtonProps> = ({ icon,mode }) => {
 interface IconButtonProps {
   icon: string;
   onClick: any;
+  active?: boolean;
 }
-export const IconButton: FC<IconButtonProps> = ({ icon,onClick }) => {
+export const IconButton: FC<IconButtonProps> = ({ icon, onClick, active }) => {
   return (
-    <WrapperIcon  onClick={() => onClick()}>
+    <WrapperIcon onClick={() => onClick()} active={active}>
       <i className="material-icons">{icon}</i>
     </WrapperIcon>
   );
@@ -53,20 +54,17 @@ export const IconButton: FC<IconButtonProps> = ({ icon,onClick }) => {
 
 interface FullButtonProps {
   icon: string;
-  label:string;
+  label: string;
   onClick: any;
 }
 
-export const FullButton:FC<FullButtonProps> = ({icon, label, onClick})=>{
-  return(
-    <OptionArea onClick={()=>onClick()}>
+export const FullButton: FC<FullButtonProps> = ({ icon, label, onClick }) => {
+  return (
+    <OptionArea onClick={() => onClick()}>
       <WrapperIcon>
-      <i className="material-icons">{icon}</i>
-    </WrapperIcon>
-    <OptionLabel>{label}</OptionLabel>
+        <i className="material-icons">{icon}</i>
+      </WrapperIcon>
+      <OptionLabel>{label}</OptionLabel>
     </OptionArea>
-  )
-}
-
-
-
+  );
+};

@@ -8,7 +8,7 @@ import AvailableTags from "./AvailableTags";
 import { getPhotoById, updatePhotoTags } from "../photo/photosHelper";
 import AddTag from "../AddTag";
 import {
-  changePhotoTag,
+  updateTags,
   getAvailableTagsForPhoto,
   getUsedTagsByPhoto,
 } from "../../workspace/tagsHelper";
@@ -20,7 +20,7 @@ const SelectedPhoto: FC = () => {
   const selectedPhoto = getPhotoById(photoId, photos)!;
 
   const toggleTag = (tagId: string) => {
-    const photoTags = changePhotoTag(tagId, selectedPhoto.tags);
+    const photoTags = updateTags(tagId, selectedPhoto.tags);
 		const photoUpdate = updatePhotoTags(photoId,photoTags,photos);
 
 		//@ts-ignore

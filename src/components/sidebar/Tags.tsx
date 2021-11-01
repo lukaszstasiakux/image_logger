@@ -1,5 +1,10 @@
 import React, { FC, Fragment, useContext, useState } from "react";
-import { SidebarHeader, SidebarSection } from "../common/Common";
+import {
+  Alignment,
+  SidebarHeader,
+  SidebarSection,
+  ActionSidebarHeader,
+} from "../common/Common";
 import DataContext from "../workspace/DataContext";
 import TagsList from "./tags/TagsList";
 import SelectedTagItem from "./tags/SelectedTagItem";
@@ -18,15 +23,22 @@ const Tags: FC = () => {
     <Fragment>
       {selectedTag && (
         <SidebarSection>
-          <SidebarHeader>Selected tag</SidebarHeader>
-          <SelectedTagItem tag={getTagById(selectedTag, tags)!} />
+          <Alignment>
+            <SidebarHeader>Selected tag</SidebarHeader>
+            <ActionSidebarHeader onClick={() => toggleSelected("")}>
+              Clear
+            </ActionSidebarHeader>
+          </Alignment>
+          <SelectedTagItem
+            tag={getTagById(selectedTag, tags)!}
+            cancelAction={toggleSelection}
+          />
         </SidebarSection>
       )}
       <SidebarSection>
-      <SidebarHeader>Tags list</SidebarHeader>
+        <SidebarHeader>Tags list</SidebarHeader>
         <TagsList onClick={toggleSelection} tags={tags} />
       </SidebarSection>
-      
     </Fragment>
   );
 };

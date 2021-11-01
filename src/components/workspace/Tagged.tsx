@@ -1,9 +1,11 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useState } from "react";
 import Section from "../layout/Section";
-import { Alignment, SectionHeader } from "../common/Common";
+import { SectionHeader } from "../common/Common";
+import Filters from "./Filters";
 import PhotoArea from "./PhotoArea";
 import DataContext from "./DataContext";
 import { photosSelector } from "./workspaceHelper";
+import { getFilteredPhotos } from "../sidebar/photo/photosHelper";
 
 interface TaggedProps {
   mode: string;
@@ -11,16 +13,28 @@ interface TaggedProps {
 }
 
 const Tagged: FC<TaggedProps> = ({ mode, hasTags }) => {
+  const [filters, changeFilters] = useState([]);
   const { data } = useContext(DataContext);
   const { photos } = data;
-  const photoScope = photosSelector(photos, hasTags)
+  const photoScope = photosSelector(photos, hasTags);
+  const filteredPhotos = getFilteredPhotos(filters, photoScope);
+
+  const isActiveFilter = () => {
+    return filters.length > 0;
+  };
 
   return (
     <Section mode={mode}>
       <SectionHeader>
-        Tagged pictures ({photoScope.length})<Alignment>button</Alignment>
+        Tagged pictures ({isActiveFilter() && `${filteredPhotos.length} / `}
+        {photoScope.length})
+        <Filters
+          activeFilters={filters}
+          applyFilters={changeFilters}
+          isActive={isActiveFilter()}
+        />
       </SectionHeader>
-      <PhotoArea mode={mode} hasTags={hasTags} photos={photoScope} />
+      <PhotoArea mode={mode} hasTags={hasTags} photos={filteredPhotos} />
     </Section>
   );
 };

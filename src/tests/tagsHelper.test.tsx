@@ -1,6 +1,7 @@
 import {
-  changePhotoTag,
+  updateTags,
   defineColor,
+  deleteTag,
   getAvailableTagsForPhoto,
   getUsedTagsByPhoto,
 } from "../components/workspace/tagsHelper";
@@ -156,18 +157,307 @@ describe("tagsHelper", () => {
       expect(tags).toEqual(expected);
     });
   });
-  describe("changePhotoTag", () => {
+  describe("updateTags", () => {
     const mockPhotoTags = ["tag_01", "tag_02"];
     it("should be [tag_01,tag_02, tag_03]", () => {
       const addedTag = "tag_03";
-      const result = changePhotoTag(addedTag, mockPhotoTags);
+      const result = updateTags(addedTag, mockPhotoTags);
       const expected = ["tag_01", "tag_02", "tag_03"];
       expect(result).toEqual(expected);
     });
     it("should be [tag_01]", () => {
       const addedTag = "tag_02";
-      const result = changePhotoTag(addedTag, mockPhotoTags);
+      const result = updateTags(addedTag, mockPhotoTags);
       const expected = ["tag_01"];
+      expect(result).toEqual(expected);
+    });
+  });
+
+  describe("deleteTag", () => {
+    const mockTags = [
+      {
+        id: "tag_01",
+        name: "tag 1",
+        color: "#ffffff",
+      },
+      {
+        id: "tag_02",
+        name: "tag 2",
+        color: "#ffffff",
+      },
+    ];
+    it("one photo have deleted tag", () => {
+      const tagId = "tag_01";
+      const mockPhotos = [
+        {
+          id: "photo_01",
+          tags: ["tag_01"],
+          author: "Henryk Sienkiewicz",
+          url: "www.img.url",
+        },
+        {
+          id: "photo_02",
+          tags: [],
+          author: "Adam Mickiewicz",
+          url: "www.img.url",
+        },
+        {
+          id: "photo_03",
+          tags: [],
+          author: "Boleslaw Prus",
+          url: "www.img.url",
+        },
+      ];
+      const result = deleteTag(tagId, mockTags, mockPhotos);
+      const expected = {
+        tags: [
+          {
+            id: "tag_02",
+            name: "tag 2",
+            color: "#ffffff",
+          },
+        ],
+        photos: [
+          {
+            id: "photo_01",
+            tags: [],
+            author: "Henryk Sienkiewicz",
+            url: "www.img.url",
+          },
+          {
+            id: "photo_02",
+            tags: [],
+            author: "Adam Mickiewicz",
+            url: "www.img.url",
+          },
+          {
+            id: "photo_03",
+            tags: [],
+            author: "Boleslaw Prus",
+            url: "www.img.url",
+          },
+        ],
+      };
+      expect(result).toEqual(expected);
+    });
+
+    it("more photos have deleted tag", () => {
+      const tagId = "tag_01";
+      const mockPhotos = [
+        {
+          id: "photo_01",
+          tags: ["tag_01"],
+          author: "Henryk Sienkiewicz",
+          url: "www.img.url",
+        },
+        {
+          id: "photo_02",
+          tags: ["tag_01"],
+          author: "Adam Mickiewicz",
+          url: "www.img.url",
+        },
+        {
+          id: "photo_03",
+          tags: [],
+          author: "Boleslaw Prus",
+          url: "www.img.url",
+        },
+      ];
+      const result = deleteTag(tagId, mockTags, mockPhotos);
+      const expected = {
+        tags: [
+          {
+            id: "tag_02",
+            name: "tag 2",
+            color: "#ffffff",
+          },
+        ],
+        photos: [
+          {
+            id: "photo_01",
+            tags: [],
+            author: "Henryk Sienkiewicz",
+            url: "www.img.url",
+          },
+          {
+            id: "photo_02",
+            tags: [],
+            author: "Adam Mickiewicz",
+            url: "www.img.url",
+          },
+          {
+            id: "photo_03",
+            tags: [],
+            author: "Boleslaw Prus",
+            url: "www.img.url",
+          },
+        ],
+      };
+      expect(result).toEqual(expected);
+    });
+
+    it("one photo have deleted tag and other", () => {
+      const tagId = "tag_01";
+      const mockPhotos = [
+        {
+          id: "photo_01",
+          tags: ["tag_01", "tag_02"],
+          author: "Henryk Sienkiewicz",
+          url: "www.img.url",
+        },
+        {
+          id: "photo_02",
+          tags: [],
+          author: "Adam Mickiewicz",
+          url: "www.img.url",
+        },
+        {
+          id: "photo_03",
+          tags: [],
+          author: "Boleslaw Prus",
+          url: "www.img.url",
+        },
+      ];
+      const result = deleteTag(tagId, mockTags, mockPhotos);
+      const expected = {
+        tags: [
+          {
+            id: "tag_02",
+            name: "tag 2",
+            color: "#ffffff",
+          },
+        ],
+        photos: [
+          {
+            id: "photo_01",
+            tags: ["tag_02"],
+            author: "Henryk Sienkiewicz",
+            url: "www.img.url",
+          },
+          {
+            id: "photo_02",
+            tags: [],
+            author: "Adam Mickiewicz",
+            url: "www.img.url",
+          },
+          {
+            id: "photo_03",
+            tags: [],
+            author: "Boleslaw Prus",
+            url: "www.img.url",
+          },
+        ],
+      };
+      expect(result).toEqual(expected);
+    });
+
+    it("more photos have deleted tag and other", () => {
+      const tagId = "tag_01";
+      const mockPhotos = [
+        {
+          id: "photo_01",
+          tags: ["tag_01", "tag_02"],
+          author: "Henryk Sienkiewicz",
+          url: "www.img.url",
+        },
+        {
+          id: "photo_02",
+          tags: ["tag_01", "tag_02"],
+          author: "Adam Mickiewicz",
+          url: "www.img.url",
+        },
+        {
+          id: "photo_03",
+          tags: ["tag_01"],
+          author: "Boleslaw Prus",
+          url: "www.img.url",
+        },
+      ];
+      const result = deleteTag(tagId, mockTags, mockPhotos);
+      const expected = {
+        tags: [
+          {
+            id: "tag_02",
+            name: "tag 2",
+            color: "#ffffff",
+          },
+        ],
+        photos: [
+          {
+            id: "photo_01",
+            tags: ["tag_02"],
+            author: "Henryk Sienkiewicz",
+            url: "www.img.url",
+          },
+          {
+            id: "photo_02",
+            tags: ["tag_02"],
+            author: "Adam Mickiewicz",
+            url: "www.img.url",
+          },
+          {
+            id: "photo_03",
+            tags: [],
+            author: "Boleslaw Prus",
+            url: "www.img.url",
+          },
+        ],
+      };
+      expect(result).toEqual(expected);
+    });
+
+    it("anyone photo have't deleted tag", () => {
+      const tagId = "tag_01";
+      const mockPhotos = [
+        {
+          id: "photo_01",
+          tags: ["tag_02"],
+          author: "Henryk Sienkiewicz",
+          url: "www.img.url",
+        },
+        {
+          id: "photo_02",
+          tags: ["tag_02"],
+          author: "Adam Mickiewicz",
+          url: "www.img.url",
+        },
+        {
+          id: "photo_03",
+          tags: [],
+          author: "Boleslaw Prus",
+          url: "www.img.url",
+        },
+      ];
+      const result = deleteTag(tagId, mockTags, mockPhotos);
+      const expected = {
+        tags: [
+          {
+            id: "tag_02",
+            name: "tag 2",
+            color: "#ffffff",
+          },
+        ],
+        photos: [
+          {
+            id: "photo_01",
+            tags: ["tag_02"],
+            author: "Henryk Sienkiewicz",
+            url: "www.img.url",
+          },
+          {
+            id: "photo_02",
+            tags: ["tag_02"],
+            author: "Adam Mickiewicz",
+            url: "www.img.url",
+          },
+          {
+            id: "photo_03",
+            tags: [],
+            author: "Boleslaw Prus",
+            url: "www.img.url",
+          },
+        ],
+      };
       expect(result).toEqual(expected);
     });
   });

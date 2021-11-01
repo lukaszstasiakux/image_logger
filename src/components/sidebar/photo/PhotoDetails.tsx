@@ -1,11 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import {
   Alignment,
   SidebarSection,
   OptionLabel,
-	SidebarHeader
+  SidebarHeader,
+  ActionSidebarHeader,
 } from "../../common/Common";
+import SelectedPhotoContext from "../../workspace/SelectedPhotoContext";
 
 const WrapperPhotoDetails = styled(Alignment)`
   width: 100%;
@@ -32,9 +34,20 @@ interface PhotoDetailsProps {
 }
 
 const PhotoDetails: FC<PhotoDetailsProps> = ({ url, author }) => {
+  const { toggleSelection } = useContext(SelectedPhotoContext);
+
+  const deselect = () => {
+    //@ts-ignore
+    toggleSelection("");
+  };
   return (
     <SidebarSection>
-			<SidebarHeader>Selected Photo</SidebarHeader>
+      <Alignment>
+        <SidebarHeader>Selected Photo</SidebarHeader>
+        <ActionSidebarHeader onClick={() => deselect()}>
+          Clear
+        </ActionSidebarHeader>
+      </Alignment>
       <WrapperPhotoDetails direction="column" vertical="flex-start">
         <PreviewPhoto>
           <img src={url} alt={author} />

@@ -36,6 +36,12 @@ export const SidebarHeader = styled.div`
   margin: 1rem 0;
 `;
 
+export const ActionSidebarHeader = styled.div`
+  color:${colors.action};
+  font-size:1.2rem;
+  cursor:pointer;
+  padding:0 0.5rem;
+`
 interface OptionAreaProps {
   full?: boolean;
 }
@@ -65,6 +71,7 @@ export const Overlay = styled.div`
   height: 100%;
   z-index: 5;
   cursor: default;
+  background-color:${colors.darkerColor}
 `;
 
 interface TagColorProps {

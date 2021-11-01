@@ -1,4 +1,7 @@
 # Image Logger
+Simple app for tagging photos. 
+live demo: [https://imagelogger.pixelcorn.pl/](https://imagelogger.pixelcorn.pl/) 
+
 
 
 ## Available Scripts
